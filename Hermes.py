@@ -37,7 +37,14 @@ from tkinter import font as tkfont
 from tkinter import messagebox
 from tkinter import ttk
 
-import aiohttp
+try:
+    import aiohttp
+except ImportError as exc:  # noqa: F401
+    raise SystemExit(
+        "필수 라이브러리 'aiohttp'가 설치되어 있지 않습니다.\n"
+        "다음 명령으로 설치 후 다시 실행하세요:\n"
+        "    pip install aiohttp>=3.9"
+    ) from exc
 
 # 고정 폭 컬럼 헤더 텍스트 (로그 상단 고정 표기)
 HEADER_LINE = f"{'TIME':23}  {'SEQ':>6}  {'STAT':>5}  {'LAT(ms)':>8}  ERROR"
