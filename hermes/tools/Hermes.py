@@ -10,10 +10,10 @@ ability to export logs and summaries.
 Usage
 -----
 GUI:
-    python -m hermes.tools.rate_limit_tester
+    python -m hermes.tools.Hermes
 
 Headless example:
-    python -m hermes.tools.rate_limit_tester --url https://example.com/health \\
+    python -m hermes.tools.Hermes --url https://example.com/health \\
         --rps 10 --duration 60 --timeout 5 --headers headers.txt --log-file out.log
 """
 
@@ -1043,4 +1043,3 @@ def main(argv: Optional[Iterable[str]] = None) -> None:
 
 if __name__ == "__main__":
     main()
-
