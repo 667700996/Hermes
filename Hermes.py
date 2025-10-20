@@ -10,10 +10,10 @@ ability to export logs and summaries.
 Usage
 -----
 GUI:
-    python -m hermes.tools.Hermes
+    python Hermes.py
 
 Headless example:
-    python -m hermes.tools.Hermes --url https://example.com/health \\
+    python Hermes.py --url https://example.com/health \\
         --rps 10 --duration 60 --timeout 5 --headers headers.txt --log-file out.log
 """
 
@@ -741,6 +741,11 @@ class RateLimitTesterGUI:
             messagebox.showerror("오류", f"저장 실패: {exc}")
             return
         self.lbl_status.config(text=f"본문 저장: {path}")
+
+    def _on_body_modified(self, event):  # noqa: ANN001
+        if self.txt_body.edit_modified():
+            self.update_body_size_label()
+            self.txt_body.edit_modified(False)
 
     def update_body_size_label(self):
         content = self.txt_body.get("1.0", "end-1c")
